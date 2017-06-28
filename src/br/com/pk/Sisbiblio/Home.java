@@ -1,6 +1,8 @@
 package br.com.pk.Sisbiblio;
 
+import br.com.pk.Sisbiblio.bean.Funcionario;
 import br.com.pk.Sisbiblio.bean.Genero;
+import br.com.pk.Sisbiblio.model.FuncionarioDao;
 import br.com.pk.Sisbiblio.model.GeneroDao;
 import com.bulenkov.darcula.DarculaLaf;
 import java.util.logging.Level;
@@ -11,8 +13,11 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 
 public class Home extends javax.swing.JFrame {
-    GeneroDao dao = new GeneroDao();
-    Genero g = new Genero();
+    int tab;
+    GeneroDao gendao = new GeneroDao();
+    Genero gen = new Genero();
+    FuncionarioDao funcdao = new FuncionarioDao();
+    Funcionario func = new Funcionario();
 
     public Home() {
         BasicLookAndFeel darcula = new DarculaLaf();
@@ -22,27 +27,192 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
+        startTela();
+        //atualizaCombobox();
+    }
+    
+    
+    public void atualizaCombobox(){
+        tab = jtsisbiblio.getSelectedIndex();
+        switch (tab) {
+            case 0:
+        cbgen.removeAllItems();
+        for (Genero gen: gendao.listaGenero()){
+            cbgen.addItem(gen);
+        };
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                cbfunc.removeAllItems();
+                for (Funcionario func: funcdao.listaFunc()){
+                    cbfunc.addItem(func);
+                };
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            default:
+                break;
+
+        }
+    }
+
+    public void startTela(){
+        //comboBox Gênero
+        for (Genero gen: gendao.listaGenero()){
+            cbgen.addItem(gen);
+        };
+        //comboBox Funcionário
+        for (Funcionario func: funcdao.listaFunc()){
+            cbfunc.addItem(func);
+        };
+        //Campos jPanel Gênero
         txtaltgen.setVisible(false);
         lblaltgen.setVisible(false);
         btnaltgen.setVisible(false);
         btndelgen.setVisible(false);
-        txtcadgen.setEditable(true);
         txtidgen.setVisible(false);
-        atualizacombobox();
+        txtcadgen.requestFocus();
+        //Campos jPanel Funcionário
+        lblaltfunc.setVisible(false);
+        lblaltcpffunc.setVisible(false);
+        txtaltcpffunc.setVisible(false);
+        lblaltnomefunc.setVisible(false);
+        txtaltnomefunc.setVisible(false);
+        lblaltfunfunc.setVisible(false);
+        txtaltfunfunc.setVisible(false);
+        btnaltfunc.setVisible(false);
+        btndelfunc.setVisible(false);
     }
     
-    public void atualizacombobox(){
-        cbgen.removeAllItems();
-        for (Genero g: dao.listaGenero()){
-            
-            cbgen.addItem(g);
-        };
+    public void arrumaTelas(){
+        tab = jtsisbiblio.getSelectedIndex();
+        switch (tab) {
+            case 0:
+                txtcadgen.setEditable(true);
+                txtaltgen.setVisible(false);
+                lblaltgen.setVisible(false);
+                btnaltgen.setVisible(false);
+                btndelgen.setVisible(false);
+                txtidgen.setVisible(false);
+                btncadgen.setVisible(true);
+                txtcadgen.requestFocus();
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                rbfunA.setSelected(false);
+                rbfunD.setSelected(false);
+                txtcadcpffunc.requestFocus();
+                txtcadcpffunc.setEditable(true);
+                txtcadnomefunc.setEditable(true);
+                txtcadfunfunc.setEditable(true);
+                btncadfunc.setVisible(true);
+                lblaltfunc.setVisible(false);
+                lblaltcpffunc.setVisible(false);
+                txtaltcpffunc.setVisible(false);
+                lblaltnomefunc.setVisible(false);
+                txtaltnomefunc.setVisible(false);
+                lblaltfunfunc.setVisible(false);
+                txtaltfunfunc.setVisible(false);
+                btnaltfunc.setVisible(false);
+                btndelfunc.setVisible(false);
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            default:
+                break;
+        }        
     }
+    
+    public void pesqTelas(){ 
+        tab = jtsisbiblio.getSelectedIndex();
+        switch (tab) {
+            case 0:
+                txtcadgen.setEditable(false);
+                btncadgen.setVisible(false);
+                btnaltgen.setVisible(true);
+                btndelgen.setVisible(true);
+                txtaltgen.setVisible(true);
+                lblaltgen.setVisible(true);
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                txtcadcpffunc.setEditable(false);
+                txtcadnomefunc.setEditable(false);
+                txtcadfunfunc.setEditable(false);
+                btncadfunc.setVisible(false);
+                lblaltfunc.setVisible(true);
+                lblaltcpffunc.setVisible(true);
+                txtaltcpffunc.setVisible(true);
+                lblaltnomefunc.setVisible(true);
+                txtaltnomefunc.setVisible(true);
+                lblaltfunfunc.setVisible(true);
+                txtaltfunfunc.setVisible(true);
+                btnaltfunc.setVisible(true);
+                btndelfunc.setVisible(true);
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            default:
+                break;
+        }        
+    }
+    
+    public void limpaTelas(){
+        tab = jtsisbiblio.getSelectedIndex();
+        switch (tab) {
+            case 0:
+                txtcadgen.setText("");
+                txtaltgen.setText("");
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                txtcadcpffunc.setText("");
+                txtcadnomefunc.setText("");
+                txtcadfunfunc.setText("");
+                txtaltcpffunc.setText("");
+                txtaltnomefunc.setText("");
+                txtaltfunfunc.setText("");
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            default:
+                break;
+        }
 
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bgfunc = new javax.swing.ButtonGroup();
         jtsisbiblio = new javax.swing.JTabbedPane();
         jpgenero = new javax.swing.JPanel();
         cbgen = new javax.swing.JComboBox<>();
@@ -59,12 +229,35 @@ public class Home extends javax.swing.JFrame {
         jplivro = new javax.swing.JPanel();
         jpusuario = new javax.swing.JPanel();
         jpfuncionario = new javax.swing.JPanel();
+        cbfunc = new javax.swing.JComboBox<>();
+        btnpesqfunc = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtcadcpffunc = new javax.swing.JTextField();
+        txtcadnomefunc = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtcadfunfunc = new javax.swing.JTextField();
+        btncadfunc = new javax.swing.JButton();
+        btnlmpfunc = new javax.swing.JButton();
+        btnaltfunc = new javax.swing.JButton();
+        btndelfunc = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        rbfunA = new javax.swing.JRadioButton();
+        rbfunD = new javax.swing.JRadioButton();
+        lblaltfunc = new javax.swing.JLabel();
+        txtaltcpffunc = new javax.swing.JTextField();
+        txtaltnomefunc = new javax.swing.JTextField();
+        txtaltfunfunc = new javax.swing.JTextField();
+        lblaltcpffunc = new javax.swing.JLabel();
+        lblaltnomefunc = new javax.swing.JLabel();
+        lblaltfunfunc = new javax.swing.JLabel();
         jpautor = new javax.swing.JPanel();
         jplocalizacao = new javax.swing.JPanel();
         jpeditora = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sisbiblio Darcula 0.1®");
+        setTitle("Sisbiblio Darcula 0.5®");
+        setAutoRequestFocus(false);
         setBackground(new java.awt.Color(60, 63, 64));
         setMaximumSize(new java.awt.Dimension(474, 365));
         setResizable(false);
@@ -202,15 +395,157 @@ public class Home extends javax.swing.JFrame {
 
         jtsisbiblio.addTab("USUÁRIO", jpusuario);
 
+        btnpesqfunc.setText("Alterar/Excluir");
+        btnpesqfunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpesqfuncActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("CPF");
+
+        jLabel3.setText("Nome");
+
+        jLabel4.setText("Função");
+
+        btncadfunc.setText("Cadastrar");
+        btncadfunc.setPreferredSize(new java.awt.Dimension(130, 32));
+        btncadfunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncadfuncActionPerformed(evt);
+            }
+        });
+
+        btnlmpfunc.setText("Limpar Dados");
+        btnlmpfunc.setMaximumSize(new java.awt.Dimension(130, 32));
+        btnlmpfunc.setPreferredSize(new java.awt.Dimension(130, 32));
+        btnlmpfunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlmpfuncActionPerformed(evt);
+            }
+        });
+
+        btnaltfunc.setText("Alterar");
+        btnaltfunc.setPreferredSize(new java.awt.Dimension(130, 32));
+        btnaltfunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaltfuncActionPerformed(evt);
+            }
+        });
+
+        btndelfunc.setText("Excluir");
+        btndelfunc.setPreferredSize(new java.awt.Dimension(130, 32));
+        btndelfunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndelfuncActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Status");
+
+        bgfunc.add(rbfunA);
+        rbfunA.setText("Ativo");
+
+        bgfunc.add(rbfunD);
+        rbfunD.setText("Desativado");
+
+        lblaltfunc.setText("Alterar Para");
+
+        lblaltcpffunc.setText("");
+
+        lblaltnomefunc.setText("");
+
+        lblaltfunfunc.setText("");
+
         javax.swing.GroupLayout jpfuncionarioLayout = new javax.swing.GroupLayout(jpfuncionario);
         jpfuncionario.setLayout(jpfuncionarioLayout);
         jpfuncionarioLayout.setHorizontalGroup(
             jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
+            .addGroup(jpfuncionarioLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpfuncionarioLayout.createSequentialGroup()
+                        .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbfunc, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btncadfunc, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnaltfunc, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btndelfunc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnlmpfunc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnpesqfunc, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(jpfuncionarioLayout.createSequentialGroup()
+                        .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(37, 37, 37)
+                        .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpfuncionarioLayout.createSequentialGroup()
+                                .addComponent(rbfunA)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbfunD))
+                            .addComponent(txtcadfunfunc, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtcadnomefunc, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtcadcpffunc, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpfuncionarioLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(lblaltfunc))
+                    .addGroup(jpfuncionarioLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblaltcpffunc)
+                            .addComponent(lblaltnomefunc)
+                            .addComponent(lblaltfunfunc))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtaltcpffunc)
+                            .addComponent(txtaltnomefunc)
+                            .addComponent(txtaltfunfunc, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jpfuncionarioLayout.setVerticalGroup(
             jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 337, Short.MAX_VALUE)
+            .addGroup(jpfuncionarioLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbfunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnpesqfunc)
+                    .addComponent(lblaltfunc))
+                .addGap(18, 18, 18)
+                .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtcadcpffunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtaltcpffunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblaltcpffunc))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtcadnomefunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtaltnomefunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblaltnomefunc))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtcadfunfunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtaltfunfunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblaltfunfunc))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(rbfunA)
+                    .addComponent(rbfunD))
+                .addGap(9, 9, 9)
+                .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btncadfunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnlmpfunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnaltfunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btndelfunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         jtsisbiblio.addTab("FUNCIONÁRIO", jpfuncionario);
@@ -269,69 +604,122 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnpesqgenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesqgenActionPerformed
-        txtcadgen.setEditable(false);
-        btncadgen.setVisible(false);
-        btnaltgen.setVisible(true);
-        btndelgen.setVisible(true);
-        txtaltgen.setVisible(true);
-        lblaltgen.setVisible(true);
-        Genero gcad = (Genero) cbgen.getSelectedItem();
-        txtcadgen.setText(gcad.getNome().toString());
-        txtidgen.setText(gcad.getId().toString());        
+        pesqTelas();
+        gen = (Genero)cbgen.getSelectedItem();
+        txtcadgen.setText(gen.getNome().toString());
+        txtidgen.setText(gen.getId().toString());        
     }//GEN-LAST:event_btnpesqgenActionPerformed
 
     private void btncadgenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncadgenActionPerformed
         if ((txtcadgen.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Por favor preencha o campo!");
         } else {
-            g.setNome(txtcadgen.getText());
-            dao.criaGenero(g);
-            txtcadgen.setText("");
-            atualizacombobox();
+            gen.setNome(txtcadgen.getText());
+            gendao.criaGenero(gen);
+            limpaTelas();
+            arrumaTelas();
+            atualizaCombobox();
         }
     }//GEN-LAST:event_btncadgenActionPerformed
 
     private void btnaltgenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaltgenActionPerformed
-        txtcadgen.setEditable(true);
-        lblaltgen.setVisible(false);
-        txtaltgen.setVisible(false);
-        btncadgen.setVisible(true);
-        btndelgen.setVisible(false);
-        btnaltgen.setVisible(false);
-        g.setNome(txtaltgen.getText());
-        g.setId(Long.parseLong(txtidgen.getText()));
-        dao.atualizaGenero(g,g);
-        txtcadgen.setText("");
-        txtaltgen.setText("");
-        atualizacombobox();
+        gen.setNome(txtaltgen.getText());
+        gen.setId(Long.parseLong(txtidgen.getText()));
+        gendao.atualizaGenero(gen,gen);
+        limpaTelas();
+        arrumaTelas();
+        atualizaCombobox();
     }//GEN-LAST:event_btnaltgenActionPerformed
 
     private void btndelgenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndelgenActionPerformed
-        txtcadgen.setEditable(true);
-        lblaltgen.setVisible(false);
-        txtaltgen.setVisible(false);
-        btncadgen.setVisible(true);
-        btndelgen.setVisible(false);
-        btnaltgen.setVisible(false);
-        g.setNome(txtcadgen.getText());
-        g.setId(Long.parseLong(txtidgen.getText()));
-        dao.excluiGenero(g);
-        txtcadgen.setText("");
-        txtaltgen.setText("");
-        atualizacombobox();
-        txtcadgen.requestFocus();
+        gen.setNome(txtcadgen.getText());
+        gen.setId(Long.parseLong(txtidgen.getText()));
+        gendao.excluiGenero(gen);
+        limpaTelas();
+        arrumaTelas();
+        atualizaCombobox();
     }//GEN-LAST:event_btndelgenActionPerformed
 
     private void btnlmpgenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlmpgenActionPerformed
-        txtcadgen.setText("");
-        txtcadgen.setEditable(true);
-        btncadgen.setVisible(true);
-        btnaltgen.setVisible(false);
-        btndelgen.setVisible(false);
-        txtaltgen.setVisible(false);
-        lblaltgen.setVisible(false);
-        txtcadgen.requestFocus();
+        limpaTelas();
+        arrumaTelas();
     }//GEN-LAST:event_btnlmpgenActionPerformed
+
+    private void btnlmpfuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlmpfuncActionPerformed
+        limpaTelas();
+        arrumaTelas();
+    }//GEN-LAST:event_btnlmpfuncActionPerformed
+
+    private void btnpesqfuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesqfuncActionPerformed
+        pesqTelas();
+        String st;
+        func = (Funcionario)cbfunc.getSelectedItem();
+        txtcadcpffunc.setText(func.getCPF().toString());
+        txtcadnomefunc.setText(func.getNome());
+        txtcadfunfunc.setText(func.getFuncao());
+        st=func.getStatus();
+        //JOptionPane.showMessageDialog(null,st);
+        if (st.equals("A")){
+            rbfunA.setSelected(true);
+        }else{
+            rbfunD.setSelected(true);
+        }
+    }//GEN-LAST:event_btnpesqfuncActionPerformed
+
+    private void btnaltfuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaltfuncActionPerformed
+        func.setCPF(Integer.parseInt(txtcadcpffunc.getText()));
+        func.setNome(txtaltnomefunc.getText());
+        func.setFuncao(txtaltfunfunc.getText());
+        //if pra determinar o status
+        if (rbfunA.isSelected()){
+            func.setStatus("A");
+        }else{
+            func.setStatus("D");
+        }
+        funcdao.atualizaFunc(func,func,func,func);
+        limpaTelas();
+        arrumaTelas();
+        atualizaCombobox();
+    }//GEN-LAST:event_btnaltfuncActionPerformed
+
+    private void btndelfuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndelfuncActionPerformed
+        func.setNome(txtcadnomefunc.getText());
+        funcdao.excluiFunc(func);
+        limpaTelas();
+        arrumaTelas();
+        atualizaCombobox();
+    }//GEN-LAST:event_btndelfuncActionPerformed
+
+    private void btncadfuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncadfuncActionPerformed
+//         if ((txtcadcpffunc.getText().isEmpty())) {
+//            JOptionPane.showMessageDialog(null, "Por favor preencha o campo!");
+//            txtcadcpffunc.requestFocus();
+//        }else 
+        if ((txtcadnomefunc.getText().isEmpty())) {
+                        JOptionPane.showMessageDialog(null, "Por favor preencha o campo!");
+            txtcadnomefunc.requestFocus();
+        }else if ((txtcadfunfunc.getText().isEmpty())) {
+                        JOptionPane.showMessageDialog(null, "Por favor preencha o campo!");
+            txtcadcpffunc.requestFocus();
+        }else if ((rbfunA.isSelected()==false)&&(rbfunD.isSelected()== false)) {
+                  JOptionPane.showMessageDialog(null, "Selecione o Status");
+        }
+        
+        else {
+            //func.setCPF(Integer.parseInt(txtcadcpffunc.getText()));
+            func.setNome(txtcadnomefunc.getText());
+            func.setFuncao(txtcadfunfunc.getText());
+            if (rbfunA.isSelected()){
+                func.setStatus("A");   
+            }else{
+                func.setStatus("D");   
+            }
+            funcdao.criaFunc(func);
+            limpaTelas();
+            arrumaTelas();
+            atualizaCombobox();
+        }
+    }//GEN-LAST:event_btncadfuncActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -368,13 +756,24 @@ public class Home extends javax.swing.JFrame {
     
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgfunc;
+    private javax.swing.JButton btnaltfunc;
     private javax.swing.JButton btnaltgen;
+    private javax.swing.JButton btncadfunc;
     private javax.swing.JButton btncadgen;
+    private javax.swing.JButton btndelfunc;
     private javax.swing.JButton btndelgen;
+    private javax.swing.JButton btnlmpfunc;
     private javax.swing.JButton btnlmpgen;
+    private javax.swing.JButton btnpesqfunc;
     private javax.swing.JButton btnpesqgen;
+    private javax.swing.JComboBox<Object> cbfunc;
     private javax.swing.JComboBox<Object> cbgen;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jpautor;
     private javax.swing.JPanel jpeditora;
     private javax.swing.JPanel jpfuncionario;
@@ -383,9 +782,21 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jplocalizacao;
     private javax.swing.JPanel jpusuario;
     private javax.swing.JTabbedPane jtsisbiblio;
+    private javax.swing.JLabel lblaltcpffunc;
+    private javax.swing.JLabel lblaltfunc;
+    private javax.swing.JLabel lblaltfunfunc;
     private javax.swing.JLabel lblaltgen;
+    private javax.swing.JLabel lblaltnomefunc;
+    private javax.swing.JRadioButton rbfunA;
+    private javax.swing.JRadioButton rbfunD;
+    private javax.swing.JTextField txtaltcpffunc;
+    private javax.swing.JTextField txtaltfunfunc;
     private javax.swing.JTextField txtaltgen;
+    private javax.swing.JTextField txtaltnomefunc;
+    private javax.swing.JTextField txtcadcpffunc;
+    private javax.swing.JTextField txtcadfunfunc;
     private javax.swing.JTextField txtcadgen;
+    private javax.swing.JTextField txtcadnomefunc;
     private javax.swing.JTextField txtidgen;
     // End of variables declaration//GEN-END:variables
 

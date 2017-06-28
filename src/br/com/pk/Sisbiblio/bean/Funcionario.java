@@ -1,15 +1,27 @@
 package br.com.pk.Sisbiblio.bean;
 
 public class Funcionario {
-    private int CPF;
+    private Integer CPF;
     private String nome;  
     private String funcao;
+    private String status;
 
-    public int getCPF() {
+    public Funcionario() {
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Integer getCPF() {
         return CPF;
     }
 
-    public void setCPF(int CPF) {
+    public void setCPF(Integer CPF) {
         this.CPF = CPF;
     }
 
@@ -27,6 +39,11 @@ public class Funcionario {
 
     public void setFuncao(String funcao) {
         this.funcao = funcao;
+    }
+
+    @Override
+    public String toString() {
+        return nome.toString();
     }
     
 }
