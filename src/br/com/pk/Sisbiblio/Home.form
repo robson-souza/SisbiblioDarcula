@@ -7,7 +7,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="Sisbiblio Darcula 0.53&#xae;"/>
+    <Property name="title" type="java.lang.String" value="Sisbiblio Darcula 0.53.1&#xae;"/>
     <Property name="autoRequestFocus" type="boolean" value="false"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="40" green="3f" red="3c" type="rgb"/>
@@ -560,7 +560,6 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="41" green="3f" red="3c" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="666"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
                 </Property>

@@ -79,7 +79,7 @@ public class Home extends javax.swing.JFrame {
         txtidgen.setVisible(false);
         txtcadgen.requestFocus();
         //Campos jPanel Funcionário
-//        txtidfunc.setVisible(false);
+        txtidfunc.setVisible(false);
         lblaltfunc.setVisible(false);
         btncopiacpffunc.setVisible(false);
         txtaltcpffunc.setVisible(false);
@@ -257,7 +257,7 @@ public class Home extends javax.swing.JFrame {
         jpeditora = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sisbiblio Darcula 0.53®");
+        setTitle("Sisbiblio Darcula 0.53.1®");
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(60, 63, 64));
         setMaximumSize(new java.awt.Dimension(474, 365));
@@ -475,7 +475,6 @@ public class Home extends javax.swing.JFrame {
 
         txtidfunc.setEditable(false);
         txtidfunc.setBackground(new java.awt.Color(60, 63, 65));
-        txtidfunc.setText("666");
         txtidfunc.setBorder(null);
 
         txtcadcpffunc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("00000000000"))));
