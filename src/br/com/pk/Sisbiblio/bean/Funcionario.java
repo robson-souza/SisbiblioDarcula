@@ -1,6 +1,7 @@
 package br.com.pk.Sisbiblio.bean;
 
 public class Funcionario {
+    private Integer ID;
     private Integer CPF;
     private String nome;  
     private String funcao;
@@ -25,6 +26,14 @@ public class Funcionario {
         this.CPF = CPF;
     }
 
+    public Integer getID() {
+        return ID;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
+    
     public String getNome() {
         return nome;
     }

@@ -18,32 +18,33 @@ public class FuncionarioDao {
         
     public void criaFunc(Funcionario f){
 
-        String sql = "INSERT INTO tb_funcionario (nome_funcionario,funcao_funcionario,status_funcionario) VALUES (?,?,?)";
+        String sql = "INSERT INTO tb_funcionario (cpf_funcionario,nome_funcionario,funcao_funcionario,status_funcionario) VALUES (?,?,?,?)";
         
         try {
         st =con.prepareStatement(sql);
-        st.setString (1,f.getNome());
-        st.setString (2,f.getFuncao());
-        st.setString (3,f.getStatus());
+        st.setInt (1,f.getCPF());
+        st.setString (2,f.getNome());
+        st.setString (3,f.getFuncao());
+        st.setString (4,f.getStatus());
         st.executeUpdate();
         JOptionPane.showMessageDialog(null,"Funcionário "+f.getNome()+" adicionado com sucesso");
         
         }catch(SQLException e){
-            //JOptionPane.showMessageDialog(null,"O funcionário "+f.getNome()+" já está cadastrado");
-            JOptionPane.showMessageDialog(null,e);
+            JOptionPane.showMessageDialog(null,"O CPF "+f.getCPF()+" já está cadastrado");
         }finally{
             //ConnectionFactory.closeConnection(con, st);
         }
     }
     
-    public void atualizaFunc(Funcionario f1,Funcionario f2,Funcionario f3,Funcionario f4){
-        String sql = "UPDATE tb_funcionario set nome_funcionario = ?,funcao_funcionario = ?,status_funcionario = ?  where Id_funcionario = ?";
+    public void atualizaFunc(Funcionario f){
+        String sql = "UPDATE tb_funcionario set cpf_funcionario=?, nome_funcionario = ?,funcao_funcionario = ?,status_funcionario = ?  where Id_funcionario = ?";
         try {
         st =con.prepareStatement(sql);
-        st.setString (1,f2.getNome());
-        st.setString (2,f3.getFuncao());
-        st.setString(3,f4.getStatus());
-        st.setInt (4,f1.getCPF());
+        st.setString (2,f.getNome());
+        st.setString (3,f.getFuncao());
+        st.setString(4,f.getStatus());
+        st.setInt (1,f.getCPF());
+        st.setInt (5,f.getID());
 
         st.executeUpdate();
         JOptionPane.showMessageDialog(null,"Dados do Funcionário alterado(s) com sucesso");
@@ -85,10 +86,12 @@ public class FuncionarioDao {
                     
             while (rs.next()){
                 Funcionario f = new Funcionario();
-                f.setCPF(rs.getInt("id_funcionario"));
+                f.setID(rs.getInt("Id_funcionario"));
+                f.setCPF(rs.getInt("Cpf_funcionario"));
                 f.setNome(rs.getString("Nome_funcionario"));
                 f.setFuncao(rs.getString("funcao_funcionario"));
                 f.setStatus(rs.getString("status_funcionario"));
+                
                 funcionarios.add(f);
                 
             }

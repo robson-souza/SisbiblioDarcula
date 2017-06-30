@@ -28,7 +28,6 @@ public class Home extends javax.swing.JFrame {
         }
         initComponents();
         startTela();
-        //atualizaCombobox();
     }
     
     
@@ -67,11 +66,11 @@ public class Home extends javax.swing.JFrame {
         //comboBox Gênero
         for (Genero gen: gendao.listaGenero()){
             cbgen.addItem(gen);
-        };
+        }
         //comboBox Funcionário
         for (Funcionario func: funcdao.listaFunc()){
             cbfunc.addItem(func);
-        };
+        }
         //Campos jPanel Gênero
         txtaltgen.setVisible(false);
         lblaltgen.setVisible(false);
@@ -80,12 +79,13 @@ public class Home extends javax.swing.JFrame {
         txtidgen.setVisible(false);
         txtcadgen.requestFocus();
         //Campos jPanel Funcionário
+//        txtidfunc.setVisible(false);
         lblaltfunc.setVisible(false);
-        lblaltcpffunc.setVisible(false);
+        btncopiacpffunc.setVisible(false);
         txtaltcpffunc.setVisible(false);
-        lblaltnomefunc.setVisible(false);
+        btncopianomefunc.setVisible(false);
         txtaltnomefunc.setVisible(false);
-        lblaltfunfunc.setVisible(false);
+        btncopiafunfunc.setVisible(false);
         txtaltfunfunc.setVisible(false);
         btnaltfunc.setVisible(false);
         btndelfunc.setVisible(false);
@@ -109,19 +109,18 @@ public class Home extends javax.swing.JFrame {
             case 2:
                 break;
             case 3:
-                rbfunA.setSelected(false);
-                rbfunD.setSelected(false);
+                bgfunc.clearSelection();
                 txtcadcpffunc.requestFocus();
                 txtcadcpffunc.setEditable(true);
                 txtcadnomefunc.setEditable(true);
                 txtcadfunfunc.setEditable(true);
                 btncadfunc.setVisible(true);
                 lblaltfunc.setVisible(false);
-                lblaltcpffunc.setVisible(false);
+                btncopiacpffunc.setVisible(false);
                 txtaltcpffunc.setVisible(false);
-                lblaltnomefunc.setVisible(false);
+                btncopianomefunc.setVisible(false);
                 txtaltnomefunc.setVisible(false);
-                lblaltfunfunc.setVisible(false);
+                btncopiafunfunc.setVisible(false);
                 txtaltfunfunc.setVisible(false);
                 btnaltfunc.setVisible(false);
                 btndelfunc.setVisible(false);
@@ -158,11 +157,11 @@ public class Home extends javax.swing.JFrame {
                 txtcadfunfunc.setEditable(false);
                 btncadfunc.setVisible(false);
                 lblaltfunc.setVisible(true);
-                lblaltcpffunc.setVisible(true);
+                btncopiacpffunc.setVisible(true);
                 txtaltcpffunc.setVisible(true);
-                lblaltnomefunc.setVisible(true);
+                btncopianomefunc.setVisible(true);
                 txtaltnomefunc.setVisible(true);
-                lblaltfunfunc.setVisible(true);
+                btncopiafunfunc.setVisible(true);
                 txtaltfunfunc.setVisible(true);
                 btnaltfunc.setVisible(true);
                 btndelfunc.setVisible(true);
@@ -196,6 +195,7 @@ public class Home extends javax.swing.JFrame {
                 txtaltcpffunc.setText("");
                 txtaltnomefunc.setText("");
                 txtaltfunfunc.setText("");
+                bgfunc.clearSelection();
                 break;
             case 4:
                 break;
@@ -233,7 +233,6 @@ public class Home extends javax.swing.JFrame {
         btnpesqfunc = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtcadcpffunc = new javax.swing.JTextField();
         txtcadnomefunc = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtcadfunfunc = new javax.swing.JTextField();
@@ -248,15 +247,17 @@ public class Home extends javax.swing.JFrame {
         txtaltcpffunc = new javax.swing.JTextField();
         txtaltnomefunc = new javax.swing.JTextField();
         txtaltfunfunc = new javax.swing.JTextField();
-        lblaltcpffunc = new javax.swing.JLabel();
-        lblaltnomefunc = new javax.swing.JLabel();
-        lblaltfunfunc = new javax.swing.JLabel();
+        btncopiacpffunc = new javax.swing.JButton();
+        btncopianomefunc = new javax.swing.JButton();
+        btncopiafunfunc = new javax.swing.JButton();
+        txtidfunc = new javax.swing.JTextField();
+        txtcadcpffunc = new javax.swing.JFormattedTextField();
         jpautor = new javax.swing.JPanel();
         jplocalizacao = new javax.swing.JPanel();
         jpeditora = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sisbiblio Darcula 0.5®");
+        setTitle("Sisbiblio Darcula 0.53®");
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(60, 63, 64));
         setMaximumSize(new java.awt.Dimension(474, 365));
@@ -331,7 +332,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(btncadgen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnaltgen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbgen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addGroup(jpgeneroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtaltgen)
                     .addComponent(btnlmpgen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -364,7 +365,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jpgeneroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btndelgen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnaltgen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         jtsisbiblio.addTab("GÊNERO", jpgenero);
@@ -373,11 +374,11 @@ public class Home extends javax.swing.JFrame {
         jplivro.setLayout(jplivroLayout);
         jplivroLayout.setHorizontalGroup(
             jplivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
+            .addGap(0, 493, Short.MAX_VALUE)
         );
         jplivroLayout.setVerticalGroup(
             jplivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 337, Short.MAX_VALUE)
+            .addGap(0, 314, Short.MAX_VALUE)
         );
 
         jtsisbiblio.addTab("LIVRO", jplivro);
@@ -386,11 +387,11 @@ public class Home extends javax.swing.JFrame {
         jpusuario.setLayout(jpusuarioLayout);
         jpusuarioLayout.setHorizontalGroup(
             jpusuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
+            .addGap(0, 493, Short.MAX_VALUE)
         );
         jpusuarioLayout.setVerticalGroup(
             jpusuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 337, Short.MAX_VALUE)
+            .addGap(0, 314, Short.MAX_VALUE)
         );
 
         jtsisbiblio.addTab("USUÁRIO", jpusuario);
@@ -451,11 +452,33 @@ public class Home extends javax.swing.JFrame {
 
         lblaltfunc.setText("Alterar Para");
 
-        lblaltcpffunc.setText("");
+        btncopiacpffunc.setText("");
+        btncopiacpffunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncopiacpffuncActionPerformed(evt);
+            }
+        });
 
-        lblaltnomefunc.setText("");
+        btncopianomefunc.setText("");
+        btncopianomefunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncopianomefuncActionPerformed(evt);
+            }
+        });
 
-        lblaltfunfunc.setText("");
+        btncopiafunfunc.setText("");
+        btncopiafunfunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncopiafunfuncActionPerformed(evt);
+            }
+        });
+
+        txtidfunc.setEditable(false);
+        txtidfunc.setBackground(new java.awt.Color(60, 63, 65));
+        txtidfunc.setText("666");
+        txtidfunc.setBorder(null);
+
+        txtcadcpffunc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("00000000000"))));
 
         javax.swing.GroupLayout jpfuncionarioLayout = new javax.swing.GroupLayout(jpfuncionario);
         jpfuncionario.setLayout(jpfuncionarioLayout);
@@ -475,36 +498,43 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(btnlmpfunc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnpesqfunc, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jpfuncionarioLayout.createSequentialGroup()
-                        .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(37, 37, 37)
-                        .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jpfuncionarioLayout.createSequentialGroup()
+                                .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addGap(37, 37, 37))
+                            .addGroup(jpfuncionarioLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtidfunc)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jpfuncionarioLayout.createSequentialGroup()
                                 .addComponent(rbfunA)
                                 .addGap(18, 18, 18)
                                 .addComponent(rbfunD))
-                            .addComponent(txtcadfunfunc, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtcadnomefunc, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtcadcpffunc, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtcadfunfunc)
+                            .addComponent(txtcadnomefunc)
+                            .addComponent(txtcadcpffunc))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpfuncionarioLayout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(lblaltfunc))
-                    .addGroup(jpfuncionarioLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblaltcpffunc)
-                            .addComponent(lblaltnomefunc)
-                            .addComponent(lblaltfunfunc))
+                        .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btncopiacpffunc)
+                            .addComponent(btncopianomefunc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btncopiafunfunc, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtaltcpffunc)
                             .addComponent(txtaltnomefunc)
-                            .addComponent(txtaltfunfunc, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))))
-                .addContainerGap(12, Short.MAX_VALUE))
+                            .addComponent(txtaltfunfunc, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpfuncionarioLayout.createSequentialGroup()
+                        .addGap(0, 89, Short.MAX_VALUE)
+                        .addComponent(lblaltfunc)
+                        .addGap(54, 54, 54))))
         );
         jpfuncionarioLayout.setVerticalGroup(
             jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -517,21 +547,22 @@ public class Home extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtcadcpffunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtaltcpffunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblaltcpffunc))
+                    .addComponent(btncopiacpffunc)
+                    .addComponent(txtidfunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtcadcpffunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtcadnomefunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(txtaltnomefunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblaltnomefunc))
+                    .addComponent(btncopianomefunc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtcadfunfunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(txtaltfunfunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblaltfunfunc))
+                    .addComponent(btncopiafunfunc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -541,11 +572,11 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btncadfunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnlmpfunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpfuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnaltfunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btndelfunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jtsisbiblio.addTab("FUNCIONÁRIO", jpfuncionario);
@@ -554,11 +585,11 @@ public class Home extends javax.swing.JFrame {
         jpautor.setLayout(jpautorLayout);
         jpautorLayout.setHorizontalGroup(
             jpautorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
+            .addGap(0, 493, Short.MAX_VALUE)
         );
         jpautorLayout.setVerticalGroup(
             jpautorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 337, Short.MAX_VALUE)
+            .addGap(0, 314, Short.MAX_VALUE)
         );
 
         jtsisbiblio.addTab("AUTOR", jpautor);
@@ -567,11 +598,11 @@ public class Home extends javax.swing.JFrame {
         jplocalizacao.setLayout(jplocalizacaoLayout);
         jplocalizacaoLayout.setHorizontalGroup(
             jplocalizacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
+            .addGap(0, 493, Short.MAX_VALUE)
         );
         jplocalizacaoLayout.setVerticalGroup(
             jplocalizacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 337, Short.MAX_VALUE)
+            .addGap(0, 314, Short.MAX_VALUE)
         );
 
         jtsisbiblio.addTab("LOCALIZAÇÃO", jplocalizacao);
@@ -580,11 +611,11 @@ public class Home extends javax.swing.JFrame {
         jpeditora.setLayout(jpeditoraLayout);
         jpeditoraLayout.setHorizontalGroup(
             jpeditoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
+            .addGap(0, 493, Short.MAX_VALUE)
         );
         jpeditoraLayout.setVerticalGroup(
             jpeditoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 337, Short.MAX_VALUE)
+            .addGap(0, 314, Short.MAX_VALUE)
         );
 
         jtsisbiblio.addTab("EDITORA", jpeditora);
@@ -597,7 +628,7 @@ public class Home extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jtsisbiblio, javax.swing.GroupLayout.PREFERRED_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(jtsisbiblio, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
         );
 
         pack();
@@ -606,12 +637,12 @@ public class Home extends javax.swing.JFrame {
     private void btnpesqgenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesqgenActionPerformed
         pesqTelas();
         gen = (Genero)cbgen.getSelectedItem();
-        txtcadgen.setText(gen.getNome().toString());
+        txtcadgen.setText(gen.getNome());
         txtidgen.setText(gen.getId().toString());        
     }//GEN-LAST:event_btnpesqgenActionPerformed
 
     private void btncadgenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncadgenActionPerformed
-        if ((txtcadgen.getText().isEmpty())) {
+        if (txtcadgen.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor preencha o campo!");
         } else {
             gen.setNome(txtcadgen.getText());
@@ -623,12 +654,18 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btncadgenActionPerformed
 
     private void btnaltgenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaltgenActionPerformed
-        gen.setNome(txtaltgen.getText());
-        gen.setId(Long.parseLong(txtidgen.getText()));
-        gendao.atualizaGenero(gen,gen);
-        limpaTelas();
-        arrumaTelas();
-        atualizaCombobox();
+        if (txtaltgen.getText().trim().isEmpty()){
+                JOptionPane.showMessageDialog(null,"Por favor preencha o campo");
+                txtaltgen.setText("");
+                txtaltgen.requestFocus();
+        }else{
+            gen.setNome(txtaltgen.getText());
+            gen.setId(Long.parseLong(txtidgen.getText()));
+            gendao.atualizaGenero(gen,gen);
+            limpaTelas();
+            arrumaTelas();
+            atualizaCombobox();
+        }
     }//GEN-LAST:event_btnaltgenActionPerformed
 
     private void btndelgenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndelgenActionPerformed
@@ -657,6 +694,7 @@ public class Home extends javax.swing.JFrame {
         txtcadcpffunc.setText(func.getCPF().toString());
         txtcadnomefunc.setText(func.getNome());
         txtcadfunfunc.setText(func.getFuncao());
+        txtidfunc.setText(func.getID().toString()); 
         st=func.getStatus();
         //JOptionPane.showMessageDialog(null,st);
         if (st.equals("A")){
@@ -667,19 +705,30 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnpesqfuncActionPerformed
 
     private void btnaltfuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaltfuncActionPerformed
-        func.setCPF(Integer.parseInt(txtcadcpffunc.getText()));
+        func.setCPF(Integer.parseInt(txtaltcpffunc.getText()));
         func.setNome(txtaltnomefunc.getText());
         func.setFuncao(txtaltfunfunc.getText());
-        //if pra determinar o status
         if (rbfunA.isSelected()){
             func.setStatus("A");
         }else{
             func.setStatus("D");
         }
-        funcdao.atualizaFunc(func,func,func,func);
+        func.setID(Integer.parseInt(txtidfunc.getText()));
+        if (txtaltcpffunc.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Por favor preencha o campo");
+            txtaltcpffunc.requestFocus();
+        }else if (txtaltnomefunc.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Por favor preencha o campo");
+            txtaltnomefunc.requestFocus();            
+        }else if (txtaltfunfunc.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Por favor preencha o campo");
+            txtaltfunfunc.requestFocus();
+        }else{
+        funcdao.atualizaFunc(func);
         limpaTelas();
         arrumaTelas();
         atualizaCombobox();
+        }
     }//GEN-LAST:event_btnaltfuncActionPerformed
 
     private void btndelfuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndelfuncActionPerformed
@@ -691,22 +740,20 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btndelfuncActionPerformed
 
     private void btncadfuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncadfuncActionPerformed
-//         if ((txtcadcpffunc.getText().isEmpty())) {
-//            JOptionPane.showMessageDialog(null, "Por favor preencha o campo!");
-//            txtcadcpffunc.requestFocus();
-//        }else 
-        if ((txtcadnomefunc.getText().isEmpty())) {
-                        JOptionPane.showMessageDialog(null, "Por favor preencha o campo!");
+        if ((txtcadcpffunc.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "Por favor preencha o campo!");
+            txtcadcpffunc.requestFocus();
+        }else if ((txtcadnomefunc.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "Por favor preencha o campo!");
             txtcadnomefunc.requestFocus();
         }else if ((txtcadfunfunc.getText().isEmpty())) {
-                        JOptionPane.showMessageDialog(null, "Por favor preencha o campo!");
+            JOptionPane.showMessageDialog(null, "Por favor preencha o campo!");
             txtcadcpffunc.requestFocus();
         }else if ((rbfunA.isSelected()==false)&&(rbfunD.isSelected()== false)) {
                   JOptionPane.showMessageDialog(null, "Selecione o Status");
         }
-        
         else {
-            //func.setCPF(Integer.parseInt(txtcadcpffunc.getText()));
+            func.setCPF(Integer.parseInt(txtcadcpffunc.getText()));
             func.setNome(txtcadnomefunc.getText());
             func.setFuncao(txtcadfunfunc.getText());
             if (rbfunA.isSelected()){
@@ -721,6 +768,18 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btncadfuncActionPerformed
 
+    private void btncopiacpffuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncopiacpffuncActionPerformed
+        txtaltcpffunc.setText(txtcadcpffunc.getText());
+    }//GEN-LAST:event_btncopiacpffuncActionPerformed
+
+    private void btncopianomefuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncopianomefuncActionPerformed
+        txtaltnomefunc.setText(txtcadnomefunc.getText());
+    }//GEN-LAST:event_btncopianomefuncActionPerformed
+
+    private void btncopiafunfuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncopiafunfuncActionPerformed
+        txtaltfunfunc.setText(txtcadfunfunc.getText());
+    }//GEN-LAST:event_btncopiafunfuncActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -734,23 +793,18 @@ public class Home extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Home().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Home().setVisible(true);
         });
     }
     
@@ -761,6 +815,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnaltgen;
     private javax.swing.JButton btncadfunc;
     private javax.swing.JButton btncadgen;
+    private javax.swing.JButton btncopiacpffunc;
+    private javax.swing.JButton btncopiafunfunc;
+    private javax.swing.JButton btncopianomefunc;
     private javax.swing.JButton btndelfunc;
     private javax.swing.JButton btndelgen;
     private javax.swing.JButton btnlmpfunc;
@@ -782,21 +839,19 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jplocalizacao;
     private javax.swing.JPanel jpusuario;
     private javax.swing.JTabbedPane jtsisbiblio;
-    private javax.swing.JLabel lblaltcpffunc;
     private javax.swing.JLabel lblaltfunc;
-    private javax.swing.JLabel lblaltfunfunc;
     private javax.swing.JLabel lblaltgen;
-    private javax.swing.JLabel lblaltnomefunc;
     private javax.swing.JRadioButton rbfunA;
     private javax.swing.JRadioButton rbfunD;
     private javax.swing.JTextField txtaltcpffunc;
     private javax.swing.JTextField txtaltfunfunc;
     private javax.swing.JTextField txtaltgen;
     private javax.swing.JTextField txtaltnomefunc;
-    private javax.swing.JTextField txtcadcpffunc;
+    private javax.swing.JFormattedTextField txtcadcpffunc;
     private javax.swing.JTextField txtcadfunfunc;
     private javax.swing.JTextField txtcadgen;
     private javax.swing.JTextField txtcadnomefunc;
+    private javax.swing.JTextField txtidfunc;
     private javax.swing.JTextField txtidgen;
     // End of variables declaration//GEN-END:variables
 
